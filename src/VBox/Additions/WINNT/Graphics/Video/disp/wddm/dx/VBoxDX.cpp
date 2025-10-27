@@ -1,4 +1,4 @@
-/* $Id: VBoxDX.cpp 111476 2025-10-21 19:24:04Z vitali.pelenjow@oracle.com $ */
+/* $Id: VBoxDX.cpp 111498 2025-10-27 16:11:12Z vitali.pelenjow@oracle.com $ */
 /** @file
  * VirtualBox D3D user mode driver.
  */
@@ -2595,7 +2595,9 @@ void vboxDXDestroyQuery(PVBOXDX_DEVICE pDevice, PVBOXDXQUERY pQuery)
 
 void vboxDXQueryBegin(PVBOXDX_DEVICE pDevice, PVBOXDXQUERY pQuery)
 {
-    Assert(pQuery->enmQueryState == VBOXDXQUERYSTATE_CREATED || pQuery->enmQueryState == VBOXDXQUERYSTATE_SIGNALED);
+    Assert(   pQuery->enmQueryState == VBOXDXQUERYSTATE_CREATED
+           || pQuery->enmQueryState == VBOXDXQUERYSTATE_SIGNALED
+           || ((pQuery->svga.flags & SVGA3D_DXQUERY_FLAG_PREDICATEHINT) && pQuery->enmQueryState == VBOXDXQUERYSTATE_ISSUED));
 
     pQuery->enmQueryState = VBOXDXQUERYSTATE_BUILDING;
     if (pQuery->Query == D3D10DDI_QUERY_EVENT)
