@@ -1,4 +1,4 @@
-/* $Id: IEMAllCImplVmxInstr-x86.cpp 110684 2025-08-11 17:18:47Z klaus.espenlaub@oracle.com $ */
+/* $Id: IEMAllCImplVmxInstr-x86.cpp 111511 2025-10-28 15:05:30Z ramshankar.venkataraman@oracle.com $ */
 /** @file
  * IEM - VT-x instruction implementation (x86 target).
  */
@@ -6674,7 +6674,7 @@ static int iemVmxVmentryCheckCtls(PVMCPUCC pVCpu, const char *pszInstr) RT_NOEXC
 
         /* Save preemption timer without activating it. */
         if (    (pVmcs->u32PinCtls & VMX_PIN_CTLS_PREEMPT_TIMER)
-            || !(pVmcs->u32ProcCtls & VMX_EXIT_CTLS_SAVE_PREEMPT_TIMER))
+            || !(pVmcs->u32ExitCtls & VMX_EXIT_CTLS_SAVE_PREEMPT_TIMER))
         { /* likely */ }
         else
             IEM_VMX_VMENTRY_FAILED_RET(pVCpu, pszInstr, pszFailure, kVmxVDiag_Vmentry_SavePreemptTimer);
