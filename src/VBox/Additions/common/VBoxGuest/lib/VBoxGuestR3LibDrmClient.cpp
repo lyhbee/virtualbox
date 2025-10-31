@@ -1,4 +1,4 @@
-/* $Id: VBoxGuestR3LibDrmClient.cpp 111522 2025-10-31 11:35:17Z vadim.galitsyn@oracle.com $ */
+/* $Id: VBoxGuestR3LibDrmClient.cpp 111523 2025-10-31 11:50:01Z vadim.galitsyn@oracle.com $ */
 /** @file
  * VBoxGuestR3Lib - Ring-3 Support Library for VirtualBox guest additions, DRM client handling.
  */
@@ -221,6 +221,7 @@ static bool vbglR3DrmClientCheckPid(int32_t pid)
 
     return fSuccess;
 #else
+    RT_NOREF(pid);
     return false;
 #endif
 }
