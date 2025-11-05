@@ -1,4 +1,4 @@
-/* $Id: UIConverterBackendGlobal.cpp 110684 2025-08-11 17:18:47Z klaus.espenlaub@oracle.com $ */
+/* $Id: UIConverterBackendGlobal.cpp 111550 2025-11-05 10:04:59Z serkan.bayraktar@oracle.com $ */
 /** @file
  * VBox Qt GUI - UIConverterBackendGlobal implementation.
  */
@@ -429,9 +429,10 @@ template<> SHARED_LIBRARY_STUFF QString UIConverter::toInternalString(const UIEx
     QString strResult;
     switch (enmDialogType)
     {
-        case UIExtraDataMetaDefs::DialogType_VISOCreator: strResult = "VISOCreator"; break;
-        case UIExtraDataMetaDefs::DialogType_BootFailure: strResult = "BootFailure"; break;
-        case UIExtraDataMetaDefs::DialogType_All:         strResult = "All"; break;
+        case UIExtraDataMetaDefs::DialogType_VISOCreator:       strResult = "VISOCreator"; break;
+        case UIExtraDataMetaDefs::DialogType_BootFailure:       strResult = "BootFailure"; break;
+        case UIExtraDataMetaDefs::DialogType_UnattendedCleanup: strResult = "UnattendedCleanup"; break;
+        case UIExtraDataMetaDefs::DialogType_All:               strResult = "All"; break;
         default:
         {
             AssertMsgFailed(("No text for dialog type=%d", enmDialogType));
@@ -448,6 +449,8 @@ template<> SHARED_LIBRARY_STUFF UIExtraDataMetaDefs::DialogType UIConverter::fro
         return UIExtraDataMetaDefs::DialogType_VISOCreator;
     if (strDialogType.compare("BootFailure", Qt::CaseInsensitive) == 0)
         return UIExtraDataMetaDefs::DialogType_BootFailure;
+    if (strDialogType.compare("UnattendedCleanup", Qt::CaseInsensitive) == 0)
+        return UIExtraDataMetaDefs::DialogType_UnattendedCleanup;
     if (strDialogType.compare("All", Qt::CaseInsensitive) == 0)
         return UIExtraDataMetaDefs::DialogType_All;
     return UIExtraDataMetaDefs::DialogType_Invalid;

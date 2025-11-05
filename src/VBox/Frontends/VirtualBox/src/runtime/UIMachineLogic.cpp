@@ -1,4 +1,4 @@
-/* $Id: UIMachineLogic.cpp 111525 2025-11-03 11:50:44Z serkan.bayraktar@oracle.com $ */
+/* $Id: UIMachineLogic.cpp 111550 2025-11-05 10:04:59Z serkan.bayraktar@oracle.com $ */
 /** @file
  * VBox Qt GUI - UIMachineLogic class implementation.
  */
@@ -3086,7 +3086,9 @@ void UIMachineLogic::checkUnattendedLeftOvers()
 {
     if (!uimachine() || !uimachine()->uisession())
         return;
-
+    QString strDialogName = gpConverter->toInternalString(UIExtraDataMetaDefs::DialogType_UnattendedCleanup);
+    if (gEDataManager->suppressedMessages().contains(strDialogName))
+        return;
     CVirtualBox comVBox = gpGlobalSession->virtualBox();
     CMediumVector comMedia = comVBox.GetDVDImages();
     QUuid iMachineId = uimachine()->uisession()->machine().GetId();
@@ -3107,7 +3109,12 @@ void UIMachineLogic::checkUnattendedLeftOvers()
     }
     if (!comUnattendedVISO.isNull())
     {
-        if (msgCenter().confirmUnattendedFilesRemoval(activeMachineWindow()) != AlertButton_Ok)
+        int iReturn = msgCenter().confirmUnattendedFilesRemoval(activeMachineWindow());
+
+        if (iReturn & AlertOption_CheckBox)
+            gEDataManager->setSuppressedMessages(gEDataManager->suppressedMessages() << strDialogName);
+
+        if (iReturn != AlertButton_Ok)
             return;
 
         UINotificationProgressMediumDeletingStorage *pNotification = new UINotificationProgressMediumDeletingStorage(comUnattendedVISO);

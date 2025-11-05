@@ -1,4 +1,4 @@
-/* $Id: UIExtraDataDefs.h 110684 2025-08-11 17:18:47Z klaus.espenlaub@oracle.com $ */
+/* $Id: UIExtraDataDefs.h 111550 2025-11-05 10:04:59Z serkan.bayraktar@oracle.com $ */
 /** @file
  * VBox Qt GUI - Extra-data related definitions.
  */
@@ -523,10 +523,11 @@ public:
     /** Common UI: Dialog types. */
     enum DialogType
     {
-        DialogType_Invalid     = 0,
-        DialogType_VISOCreator = RT_BIT(0),
-        DialogType_BootFailure = RT_BIT(1),
-        DialogType_All         = 0xFFFF
+        DialogType_Invalid           = 0,
+        DialogType_VISOCreator       = RT_BIT(0),
+        DialogType_BootFailure       = RT_BIT(1),
+        DialogType_UnattendedCleanup = RT_BIT(2),
+        DialogType_All               = 0xFFFF
     };
     Q_ENUM(DialogType);
 
