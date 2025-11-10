@@ -1,4 +1,4 @@
-/* $Id: DrvNAT.cpp 111608 2025-11-10 21:28:06Z jack.doherty@oracle.com $ */
+/* $Id: DrvNAT.cpp 111609 2025-11-10 22:17:26Z jack.doherty@oracle.com $ */
 /** @file
  * DrvNATlibslirp - NATlibslirp network transport driver.
  */
@@ -561,6 +561,9 @@ static DECLCALLBACK(void) drvNATNetworkUp_EndXmit(PPDMINETWORKUP pInterface)
  */
 static void drvNATNotifyNATThread(PDRVNAT pThis, const char *pszWho)
 {
+#ifndef LOG_ENABLED
+    RT_NOREF(pszWho);
+#endif
     Log3(("Notifying NAT Thread. Culprit: %s\n", pszWho));
 #ifdef RT_OS_WINDOWS
     int cbWritten = send(pThis->ahWakeupSockPair[0], "", 1, NULL);
