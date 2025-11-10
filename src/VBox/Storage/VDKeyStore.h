@@ -1,4 +1,4 @@
-/* $Id: VDKeyStore.h 111594 2025-11-10 13:33:34Z alexander.eichner@oracle.com $ */
+/* $Id: VDKeyStore.h 111595 2025-11-10 13:34:41Z alexander.eichner@oracle.com $ */
 /** @file
  * VD - Simple keystore handling for encrypted media.
  */
@@ -6,7 +6,23 @@
 /*
  * Copyright (C) 2015-2025 Oracle and/or its affiliates.
  *
- * Oracle Corporation confidential
+ * This file is part of VirtualBox base platform packages, as
+ * available from https://www.virtualbox.org.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation, in version 3 of the
+ * License.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, see <https://www.gnu.org/licenses>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
  */
 
 #ifndef VBOX_INCLUDED_SRC_Storage_VDKeyStore_h
