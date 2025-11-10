@@ -1,4 +1,4 @@
-/* $Id: VBoxGuestLibGuestProp.cpp 111555 2025-11-06 09:49:17Z knut.osmundsen@oracle.com $ */
+/* $Id: VBoxGuestLibGuestProp.cpp 111599 2025-11-10 14:48:52Z knut.osmundsen@oracle.com $ */
 /** @file
  * VBoxGuestLib - Support Library for VirtualBox guest additions, guest properties.
  *
@@ -731,6 +731,7 @@ DECLVBGL(int) VbglGuestPropEnum(PVBGLGSTPROPCLIENT pClient,
                                 char const **ppszFlags)
 {
     AssertPtrReturn(pClient, VERR_INVALID_HANDLE);
+    *ppHandle = NULL;
 
     /* Create the handle. */
     PVBGLGUESTPROPENUM pHandle = (PVBGLGUESTPROPENUM)RTMemAllocZ(sizeof(VBGLGUESTPROPENUM));
