@@ -1,4 +1,4 @@
-# $Id: Makefile.kmk 111594 2025-11-10 13:33:34Z alexander.eichner@oracle.com $
+# $Id: Makefile.kmk 111596 2025-11-10 13:46:09Z alexander.eichner@oracle.com $
 ## @file
 # Sub-Makefile for the storage device & driver testcases.
 #
@@ -149,7 +149,7 @@ if defined(VBOX_WITH_TESTCASES) || defined(VBOX_WITH_VBOX_IMG)
  	../VCICache.cpp \
  	../VDIfVfs.cpp
  ifdef VBOX_WITH_PLUGIN_CRYPT
-   vbox-img_SOURCES += \
+  vbox-img_SOURCES += \
   	../VDFilterCrypt.cpp \
   	../VDKeyStore.cpp
  endif
