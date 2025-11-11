@@ -1,4 +1,4 @@
-/* $Id: VBoxService-win.cpp 110684 2025-08-11 17:18:47Z klaus.espenlaub@oracle.com $ */
+/* $Id: VBoxService-win.cpp 111627 2025-11-11 11:40:30Z knut.osmundsen@oracle.com $ */
 /** @file
  * VBoxService - Guest Additions Service Skeleton, Windows Specific Parts.
  */
@@ -617,14 +617,14 @@ vgsvcWinCtrlHandlerNt5Plus(DWORD dwControl, DWORD dwEventType, LPVOID lpEventDat
         default:
             return vgsvcWinCtrlHandlerCommon(dwControl);
 
-        case SERVICE_CONTROL_SESSIONCHANGE:  /* Only Windows 2000 and up. */
+        case SERVICE_CONTROL_SESSIONCHANGE:  /* Only Windows 2000 (possibly XP) and up. */
         {
             AssertPtr(lpEventData);
             PWTSSESSION_NOTIFICATION pNotify = (PWTSSESSION_NOTIFICATION)lpEventData;
             Assert(pNotify->cbSize == sizeof(WTSSESSION_NOTIFICATION));
 
-            VGSvcVerbose(1, "Control handler: %s (Session=%ld, Event=%#x)\n",
-                         vgsvcWTSStateToString(dwEventType), pNotify->dwSessionId, dwEventType);
+            VGSvcVerbose(1, "Control handler: %s (Session=%u (%#x) EventType=%#x)\n",
+                         vgsvcWTSStateToString(dwEventType), pNotify->dwSessionId, pNotify->dwSessionId, dwEventType);
 
             /* Handle all events, regardless of dwEventType. */
             int rc2 = VGSvcVMInfoSignal();

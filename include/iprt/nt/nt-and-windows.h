@@ -1,4 +1,4 @@
-/* $Id: nt-and-windows.h 110684 2025-08-11 17:18:47Z klaus.espenlaub@oracle.com $ */
+/* $Id: nt-and-windows.h 111627 2025-11-11 11:40:30Z knut.osmundsen@oracle.com $ */
 /** @file
  * IPRT - Header for code using both NT native and Windows APIs.
  */
@@ -61,6 +61,10 @@
 #undef _TEB
 #undef TEB
 #undef PTEB
+
+#ifdef WIN32_LEAN_AND_MEAN
+# include <devioctl.h> /* for DEVICE_TYPE */
+#endif
 
 #include <iprt/nt/nt.h>
 
