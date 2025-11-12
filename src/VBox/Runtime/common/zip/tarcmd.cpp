@@ -1,4 +1,4 @@
-/* $Id: tarcmd.cpp 111646 2025-11-12 09:34:43Z knut.osmundsen@oracle.com $ */
+/* $Id: tarcmd.cpp 111661 2025-11-12 12:00:49Z knut.osmundsen@oracle.com $ */
 /** @file
  * IPRT - A mini TAR Command.
  */
@@ -863,6 +863,47 @@ static RTEXITCODE rtZipTarCmdOpenInputArchive(PRTZIPTARCMDOPS pOpts, PRTVFSFSSTR
                                       &hVfsIos);
         if (RT_FAILURE(rc))
             return RTMsgErrorExitFailure("Failed to prepare standard in for reading: %Rrc", rc);
+    }
+
+    /*
+     * If no decompressor was specified and the stream is a seekable file, we
+     * will try detect if the input is compressed and which decompressor to use.
+     */
+    if (pOpts->chZipper == '\0')
+    {
+        RTVFSFILE hVfsFile = RTVfsIoStrmToFile(hVfsIos);
+        if (hVfsFile != NIL_RTVFSFILE)
+        {
+            rc = RTVfsFileSeek(hVfsFile, 0, RTFILE_SEEK_CURRENT, NULL);
+            if (RT_SUCCESS(rc))
+            {
+                uint8_t abFirstBytes[16];
+                size_t  cbFirstBytes = 0;
+                rc = RTVfsFileRead(hVfsFile, &abFirstBytes, sizeof(abFirstBytes), &cbFirstBytes);
+                if (RT_SUCCESS(rc))
+                {
+                    rc = RTVfsFileSeek(hVfsFile, -(RTFOFF)cbFirstBytes, RTFILE_SEEK_CURRENT, NULL);
+                    if (RT_SUCCESS(rc))
+                    {
+                        if (RTZipGzipIsStartOfCompressedStream(abFirstBytes, cbFirstBytes))
+                            pOpts->chZipper = 'z';
+                        else if (RTZipXzIsStartOfCompressedStream(abFirstBytes, cbFirstBytes))
+                            pOpts->chZipper = 'J';
+                        else if (RTZipBzip2IsStartOfCompressedStream(abFirstBytes, cbFirstBytes))
+                            pOpts->chZipper = 'j';
+                    }
+                    else
+                        RTMsgErrorExitFailure("Failed to rewind the input after compression detection: %Rrc", rc);
+                }
+                else
+                    RTMsgErrorExitFailure("Failed to read the first bytes of the input: %Rrc", rc);
+                if (RT_FAILURE(rc))
+                {
+                    RTVfsIoStrmRelease(hVfsIos);
+                    return RTEXITCODE_FAILURE;
+                }
+            }
+        }
     }
 
     /*
