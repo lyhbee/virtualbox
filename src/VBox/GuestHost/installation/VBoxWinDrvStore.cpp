@@ -1,4 +1,4 @@
-/* $Id: VBoxWinDrvStore.cpp 111656 2025-11-12 10:53:57Z andreas.loeffler@oracle.com $ */
+/* $Id: VBoxWinDrvStore.cpp 111690 2025-11-12 23:43:03Z knut.osmundsen@oracle.com $ */
 /** @file
  * VBoxWinDrvStore - Windows driver store handling.
  */
@@ -72,7 +72,7 @@ typedef int (*PFNVBOXWINDRVSTORE_ENUM_FILES_CALLBACK)(const char *pszFilePathAbs
 /**
  * Structure for keeping a generic Windows driver store file enumeration context.
  */
-typedef struct _VBOXWINDRVENUMFILESCTX
+typedef struct VBOXWINDRVENUMFILESCTX
 {
     /** Pointer to driver store instance. */
     PVBOXWINDRVSTORE     pDrvStore;
