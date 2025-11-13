@@ -1,4 +1,4 @@
-/* $Id: APICR3.cpp 111695 2025-11-13 13:31:17Z knut.osmundsen@oracle.com $ */
+/* $Id: APICR3-x86.cpp 111698 2025-11-13 13:43:25Z knut.osmundsen@oracle.com $ */
 /** @file
  * APIC - Advanced Programmable Interrupt Controller.
  */

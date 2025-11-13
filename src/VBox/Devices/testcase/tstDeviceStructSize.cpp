@@ -1,4 +1,4 @@
-/* $Id: tstDeviceStructSize.cpp 110684 2025-08-11 17:18:47Z klaus.espenlaub@oracle.com $ */
+/* $Id: tstDeviceStructSize.cpp 111698 2025-11-13 13:43:25Z knut.osmundsen@oracle.com $ */
 /** @file
  * tstDeviceStructSize - testcase for check structure sizes/alignment
  *                       and to verify that HC and RC uses the same
@@ -83,7 +83,7 @@
 #undef LOG_GROUP
 #include "../PC/DevRTC.cpp"
 # undef LOG_GROUP
-# include "../../VMM/VMMR3/APIC.cpp"
+# include "../../VMM/VMMR3/target-x86/APICR3-x86.cpp"
 #undef LOG_GROUP
 #include "../PC/DevIoApic.cpp"
 #undef LOG_GROUP

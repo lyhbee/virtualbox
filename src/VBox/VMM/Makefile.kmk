@@ -1,4 +1,4 @@
-# $Id: Makefile.kmk 111696 2025-11-13 13:39:50Z knut.osmundsen@oracle.com $
+# $Id: Makefile.kmk 111698 2025-11-13 13:43:25Z knut.osmundsen@oracle.com $
 ## @file
 # Top-level makefile for the VMM.
 #
@@ -109,7 +109,7 @@ endif
 VBoxVMM_SOURCES  = \
 	VBoxVMM.d \
 	VMMR3/VMMR3VTable.cpp \
-	VMMR3/APICR3.cpp \
+	VMMR3/target-x86/APICR3-x86.cpp \
 	VMMR3/CFGMR3.cpp \
 	VMMR3/CPUMR3.cpp \
 	VMMR3/target-x86/CPUMR3-x86.cpp \
