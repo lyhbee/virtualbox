@@ -1,4 +1,4 @@
-/* $Id: VBoxInstallHelper.cpp 110684 2025-08-11 17:18:47Z klaus.espenlaub@oracle.com $ */
+/* $Id: VBoxInstallHelper.cpp 111703 2025-11-13 14:37:41Z andreas.loeffler@oracle.com $ */
 /** @file
  * VBoxInstallHelper - Various helper routines for Windows host installer.
  */
@@ -1638,6 +1638,8 @@ UINT __stdcall GetPlatformArchitecture(MSIHANDLE hModule)
 
     if (RT_SUCCESS(rc))
         logStringF(hModule, "GetPlatformArchitecture: Detected host architecture '%s'", pszArch);
+    else if (rc == VERR_NOT_SUPPORTED)
+        logStringF(hModule, "GetPlatformArchitecture: Host architecture not supported (%#x)", uNativeArch);
     else
         logStringF(hModule, "GetPlatformArchitecture: Error detecting host architecture: %Rrc", rc);
 
