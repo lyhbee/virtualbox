@@ -1,4 +1,4 @@
-/* $Id: UIWizardNewVMSummaryPage.cpp 111738 2025-11-14 13:22:39Z sergey.dubov@oracle.com $ */
+/* $Id: UIWizardNewVMSummaryPage.cpp 111746 2025-11-14 16:01:19Z klaus.espenlaub@oracle.com $ */
 /** @file
  * VBox Qt GUI - UIWizardNewVMSummaryPage class implementation.
  */
@@ -76,7 +76,7 @@ private:
     /** Returns the item's name. */
     const QString &name() const { return m_strName; }
     /** Returns the item's data. */
-    const QVariant &data() const { return m_data; }
+    const QVariant &value() const { return m_data; }
     /** Returns the item's icon. */
     const QIcon &icon() const { return m_icon; }
 
@@ -118,16 +118,16 @@ UIWizardNewVMSummaryItem::UIWizardNewVMSummaryItem(UIWizardNewVMSummaryItem *pPa
 
 QString UIWizardNewVMSummaryItem::defaultText() const
 {
-    return   data().isValid()
-           ? QString("%1: %2").arg(name(), data().toString())
+    return   value().isValid()
+           ? QString("%1: %2").arg(name(), value().toString())
            : name();
 }
 
 void UIWizardNewVMSummaryItem::prepare()
 {
     setText(0, name());
-    if (data().isValid())
-        setText(1, data().toString());
+    if (value().isValid())
+        setText(1, value().toString());
     if (!icon().isNull())
         setIcon(0, icon());
     if (!parentItem())
