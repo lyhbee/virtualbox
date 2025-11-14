@@ -1,4 +1,4 @@
-/* $Id: VBoxNetSlirpNAT.cpp 111425 2025-10-16 05:03:51Z jack.doherty@oracle.com $ */
+/* $Id: VBoxNetSlirpNAT.cpp 111725 2025-11-14 10:03:15Z alexander.eichner@oracle.com $ */
 /** @file
  * VBoxNetNAT - NAT Service for connecting to IntNet.
  */
@@ -306,7 +306,13 @@ VBoxNetSlirpNAT::VBoxNetSlirpNAT()
     m_hThrdPoll(NIL_RTTHREAD),
     m_hSlirpReqQueue(NIL_RTREQQUEUE),
     m_cWakeupNotifs(0),
-    m_u16Mtu(1500)
+    m_u16Mtu(1500),
+    m_pSlirp(NULL),
+    fPassDomain(false)
+#ifndef RT_OS_WINDOWS
+    , m_hPipeWrite(NIL_RTPIPE),
+    m_hPipeRead(NIL_RTPIPE)
+#endif
 {
     LogFlowFuncEnter();
 
