@@ -1,4 +1,4 @@
-' $Id: configure.vbs 111744 2025-11-14 15:37:00Z andreas.loeffler@oracle.com $
+' $Id: configure.vbs 111745 2025-11-14 15:47:54Z andreas.loeffler@oracle.com $
 '' @file
 ' The purpose of this script is to check for all external tools, headers, and
 ' libraries VBox OSE depends on.
@@ -1762,7 +1762,7 @@ sub CheckForLibVorbis(strOptLibVorbis)
    CfgPrintAssign "SDK_VBoxLibVorbis_VBOX_DEFAULT_INCS", strPathLibVorbis
    CfgPrintAssign "SDK_VBoxLibVorbis_INCS", strPathLibVorbis
    CfgPrintAssign "SDK_VBoxLibVorbis_LIBS", strPathLibVorbis & "/lib/.libs/libvorbis.lib"
-                     
+
    strPathXml2 = UnixSlashes(PathAbs(strPathLibVorbis))
    PrintResult "libvorbis", strPathLibVorbis
 end sub
