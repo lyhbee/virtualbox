@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# $Id: vboxtestvms.py 111323 2025-10-10 13:24:36Z alexander.eichner@oracle.com $
+# $Id: vboxtestvms.py 111790 2025-11-18 12:49:13Z knut.osmundsen@oracle.com $
 
 """
 VirtualBox Test VMs
@@ -36,7 +36,7 @@ terms and conditions of either the GPL or the CDDL or both.
 
 SPDX-License-Identifier: GPL-3.0-only OR CDDL-1.0
 """
-__version__ = "$Revision: 111323 $"
+__version__ = "$Revision: 111790 $"
 
 # Standard Python imports.
 import copy;
@@ -253,7 +253,7 @@ class BaseTestVm(object):
     Defaults to the x86 platform architecture.
     """
 
-    def __init__(self, # pylint: disable=too-many-arguments
+    def __init__(self, # pylint: disable=too-many-arguments,too-many-positional-arguments
                  sVmName,                                   # type: str
                  sPlatformArchitecture = 'x86',             # type: str
                  fGrouping = 0,                             # type: int
@@ -1052,7 +1052,7 @@ class TestVm(object):                                       # pylint: disable=to
     This is just a data object.
     """
 
-    def __init__(self, # pylint: disable=too-many-arguments
+    def __init__(self, # pylint: disable=too-many-arguments,too-many-positional-arguments
                  sVmName,                                   # type: str
                  fGrouping = 0,                             # type: int
                  oSet = None,                               # type: TestVmSet
@@ -1659,7 +1659,7 @@ class AncientTestVm(TestVm):
     """
 
 
-    def __init__(self, # pylint: disable=too-many-arguments
+    def __init__(self, # pylint: disable=too-many-arguments,too-many-positional-arguments
                  sVmName,                                   # type: str
                  fGrouping = g_kfGrpAncient | g_kfGrpNoTxs, # type: int
                  sHd = None,                                # type: str

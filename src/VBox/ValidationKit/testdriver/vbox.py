@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# $Id: vbox.py 111780 2025-11-18 08:39:38Z knut.osmundsen@oracle.com $
+# $Id: vbox.py 111790 2025-11-18 12:49:13Z knut.osmundsen@oracle.com $
 # pylint: disable=too-many-lines
 
 """
@@ -37,7 +37,7 @@ terms and conditions of either the GPL or the CDDL or both.
 
 SPDX-License-Identifier: GPL-3.0-only OR CDDL-1.0
 """
-__version__ = "$Revision: 111780 $"
+__version__ = "$Revision: 111790 $"
 
 # pylint: disable=unnecessary-semicolon
 
@@ -2325,6 +2325,7 @@ class TestDriver(base.TestDriver):                                              
                     reporter.log("  HPET:               %s" % (oVM.HPETEnabled,));
                 else:
                     reporter.log("  HPET:               %s" % (oVM.hpetEnabled,));
+        fAccelerate2DVideoEnabled = False;
         if self.fpApiVer >= 6.1 and hasattr(oVM, 'graphicsAdapter'):
             if self.fpApiVer >= 7.1 and hasattr(oVM.graphicsAdapter, 'isFeatureEnabled'):
                 fAccelerate3DEnabled = \
@@ -2616,7 +2617,7 @@ class TestDriver(base.TestDriver):                                              
             reporter.errorXcpt('failed to create vm "%s"' % (sName));
         return None;
 
-    # pylint: disable=too-many-arguments,too-many-locals,too-many-statements,too-many-branches
+    # pylint: disable=too-many-arguments,too-many-positional-arguments,too-many-locals,too-many-statements,too-many-branches
     def createTestVM(self,
                      sName,
                      iGroup,
@@ -4548,11 +4549,11 @@ class TestDriver(base.TestDriver):                                              
                                           oStdErr = reporter.FileWrapper('stderr'), oStdOut = reporter.FileWrapper('stdout'),
                                           fIgnoreErrors = fIgnoreErrors);
 
-    def txsRunTest2(self, oTxsSession1, oTxsSession2, sTestName, cMsTimeout,
-            sExecName1, asArgs1,
-            sExecName2, asArgs2,
-            asAddEnv1 = (), sAsUser1 = '', fWithTestPipe1 = True,
-            asAddEnv2 = (), sAsUser2 = '', fWithTestPipe2 = True):
+    def txsRunTest2(self, oTxsSession1, oTxsSession2, sTestName, cMsTimeout, # pylint: disable=,too-many-positional-arguments
+                    sExecName1, asArgs1,
+                    sExecName2, asArgs2,
+                    asAddEnv1 = (), sAsUser1 = '', fWithTestPipe1 = True,
+                    asAddEnv2 = (), sAsUser2 = '', fWithTestPipe2 = True):
         """
         Executes the specified test tasks, waiting till they complete or
         times out.  The 1st task is started after the 2nd one.

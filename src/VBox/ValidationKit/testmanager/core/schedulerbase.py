@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# $Id: schedulerbase.py 111780 2025-11-18 08:39:38Z knut.osmundsen@oracle.com $
+# $Id: schedulerbase.py 111790 2025-11-18 12:49:13Z knut.osmundsen@oracle.com $
 # pylint: disable=too-many-lines
 
 
@@ -38,7 +38,7 @@ terms and conditions of either the GPL or the CDDL or both.
 
 SPDX-License-Identifier: GPL-3.0-only OR CDDL-1.0
 """
-__version__ = "$Revision: 111780 $"
+__version__ = "$Revision: 111790 $"
 
 
 # Standard python imports.
@@ -575,7 +575,7 @@ class SchedulerBase(object):
     def getElapsedSecs(self):
         """ Returns the number of seconds this scheduling task has been running. """
         tsSecNow = utils.timestampSecond();
-        if tsSecNow < self._tsSecStart: # paranoia
+        if tsSecNow < self._tsSecStart: # paranoia  # pylint: disable=consider-using-min-builtin
             self._tsSecStart = tsSecNow;
         return tsSecNow - self._tsSecStart;
 

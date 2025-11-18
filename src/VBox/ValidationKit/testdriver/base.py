@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# $Id: base.py 111780 2025-11-18 08:39:38Z knut.osmundsen@oracle.com $
+# $Id: base.py 111790 2025-11-18 12:49:13Z knut.osmundsen@oracle.com $
 # pylint: disable=too-many-lines
 
 """
@@ -37,7 +37,7 @@ terms and conditions of either the GPL or the CDDL or both.
 
 SPDX-License-Identifier: GPL-3.0-only OR CDDL-1.0
 """
-__version__ = "$Revision: 111780 $"
+__version__ = "$Revision: 111790 $"
 
 
 # Standard Python imports.
@@ -1313,8 +1313,7 @@ class TestDriverBase(object): # pylint: disable=too-many-instance-attributes
             if cMsToDeadline >= 0:
                 # Adjust for fudge and enforce the minimum timeout
                 cMsToDeadline -= self.secTimeoutFudge * 1000;
-                if cMsToDeadline < (cMsMinimum if cMsMinimum is not None else 10000):
-                    cMsToDeadline = cMsMinimum if cMsMinimum is not None else 10000;
+                cMsToDeadline  = max(cMsToDeadline, cMsMinimum if cMsMinimum is not None else 10000);
 
                 # Is the timeout beyond the (adjusted) deadline, if so change it.
                 if cMsTimeout > cMsToDeadline:

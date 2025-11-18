@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# $Id: testboxcontroller.py 111780 2025-11-18 08:39:38Z knut.osmundsen@oracle.com $
+# $Id: testboxcontroller.py 111790 2025-11-18 12:49:13Z knut.osmundsen@oracle.com $
 
 """
 Test Manager Core - Web Server Abstraction Base Class.
@@ -36,7 +36,7 @@ terms and conditions of either the GPL or the CDDL or both.
 
 SPDX-License-Identifier: GPL-3.0-only OR CDDL-1.0
 """
-__version__ = "$Revision: 111780 $"
+__version__ = "$Revision: 111790 $"
 
 
 # Standard python imports.
@@ -744,9 +744,7 @@ class TestBoxController(object): # pylint: disable=too-few-public-methods
         offFile  = 0;
         oSrcFile = self._oSrvGlue.getBodyIoStreamBinary();
         while offFile < cbFile:
-            cbToRead = cbFile - offFile;
-            if cbToRead > 256*1024:
-                cbToRead = 256*1024;
+            cbToRead = min(cbFile - offFile, 256*1024);
             offFile += cbToRead;
 
             abBuf = oSrcFile.read(cbToRead);

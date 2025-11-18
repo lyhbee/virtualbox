@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# $Id: txsclient.py 111780 2025-11-18 08:39:38Z knut.osmundsen@oracle.com $
+# $Id: txsclient.py 111790 2025-11-18 12:49:13Z knut.osmundsen@oracle.com $
 # pylint: disable=too-many-lines
 
 """
@@ -36,7 +36,7 @@ terms and conditions of either the GPL or the CDDL or both.
 
 SPDX-License-Identifier: GPL-3.0-only OR CDDL-1.0
 """
-__version__ = "$Revision: 111780 $"
+__version__ = "$Revision: 111790 $"
 
 # Standard Python imports.
 import array;
@@ -551,6 +551,7 @@ class Session(TdTaskBase):
                 oTaskRc = None;
         else:
             reporter.log('taskThread: cancelled already');
+            oTaskRc = None;
 
         self.lockTask();
 
