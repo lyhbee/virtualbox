@@ -1,4 +1,4 @@
-/* $Id: UIRecordingSettingsEditor.cpp 111787 2025-11-18 11:20:58Z sergey.dubov@oracle.com $ */
+/* $Id: UIRecordingSettingsEditor.cpp 111794 2025-11-18 14:09:45Z sergey.dubov@oracle.com $ */
 /** @file
  * VBox Qt GUI - UIRecordingSettingsEditor class implementation.
  */
@@ -372,7 +372,7 @@ void UIRecordingSettingsEditor::sltRetranslateUI()
 
     m_pLabelVideoQuality->setText(tr("&Video Quality"));
     m_pSliderVideoQuality->setToolTip(tr("Video quality. Increasing this value will make the video "
-                                         "look better at the cost of an increased file size."));
+                                         "look better at the cost of a decreased VM performance."));
     m_pLabelVideoQualityMin->setText(tr("default", "quality"));
     m_pLabelVideoQualityMed->setText(tr("good", "quality"));
     m_pLabelVideoQualityMax->setText(tr("best", "quality"));
