@@ -1,4 +1,4 @@
-/* $Id: RecordingSettingsImpl.cpp 111809 2025-11-19 11:12:22Z andreas.loeffler@oracle.com $ */
+/* $Id: RecordingSettingsImpl.cpp 111843 2025-11-21 15:07:11Z andreas.loeffler@oracle.com $ */
 /** @file
  *
  * VirtualBox COM class implementation - Machine capture settings.
@@ -443,7 +443,6 @@ HRESULT RecordingSettings::start(ComPtr<IProgress> &aProgress)
 HRESULT RecordingSettings::stop(void)
 {
 #ifndef VBOX_WITH_RECORDING
-    RT_NOREF(aProgress);
     ReturnComNotImplemented();
 #else
     if (m->mProgress.isNull())
