@@ -36,7 +36,7 @@ terms and conditions of either the GPL or the CDDL or both.
 
 SPDX-License-Identifier: GPL-3.0-only OR CDDL-1.0
 """
-__version__ = "$Id: tdStorageStress1.py 110684 2025-08-11 17:18:47Z klaus.espenlaub@oracle.com $"
+__version__ = "$Id: tdStorageStress1.py 111844 2025-11-22 01:00:06Z knut.osmundsen@oracle.com $"
 
 
 # Standard Python imports.
@@ -324,8 +324,8 @@ class tdStorageStress(vbox.TestDriver):                                      # p
 
     # pylint: disable=too-many-arguments
 
-    def test1OneCfg(self, sVmName, eStorageController, sDiskFormat, sDiskPath1, sDiskPath2, \
-                    sGuestFs, cCpus, fHwVirt, fNestedPaging):
+    def test1OneCfg(self, sVmName, eStorageController, sDiskFormat, # pylint: disable=too-many-positional-arguments
+                    sDiskPath1, sDiskPath2, sGuestFs, cCpus, fHwVirt, fNestedPaging):
         """
         Runs the specified VM thru test #1.
 
