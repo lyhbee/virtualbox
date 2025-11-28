@@ -1,4 +1,4 @@
-/* $Id: QITableView.cpp 111936 2025-11-28 15:38:41Z sergey.dubov@oracle.com $ */
+/* $Id: QITableView.cpp 111937 2025-11-28 15:51:07Z sergey.dubov@oracle.com $ */
 /** @file
  * VBox Qt GUI - Qt extensions: QITableView class implementation.
  */
@@ -384,14 +384,29 @@ public:
     }
 
     /** Returns a text for the passed @a enmTextRole. */
-    virtual QString text(QAccessible::Text /*enmTextRole*/) const RT_OVERRIDE
+    virtual QString text(QAccessible::Text enmTextRole) const RT_OVERRIDE
     {
-        /* Sanity check: */
-        QITableView *pTable = table();
-        AssertPtrReturn(pTable, QString());
+        /* Text for known roles: */
+        switch (enmTextRole)
+        {
+            case QAccessible::Name:
+            {
+                /* Sanity check: */
+                QITableView *pTable = table();
+                AssertPtrReturn(pTable, QString());
 
-        /* Return table whats-this: */
-        return pTable->whatsThis();
+                /* Gather suitable text: */
+                QString strText = pTable->toolTip();
+                if (strText.isEmpty())
+                    strText = pTable->whatsThis();
+                return strText;
+            }
+            default:
+                break;
+        }
+
+        /* Null string by default: */
+        return QString();
     }
 
 private:
