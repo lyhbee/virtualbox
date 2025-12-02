@@ -1,4 +1,4 @@
-/* $Id: UIRecordingVideoBitrateEditor.h 111922 2025-11-27 13:03:56Z serkan.bayraktar@oracle.com $ */
+/* $Id: UIRecordingVideoBitrateEditor.h 111975 2025-12-02 14:53:20Z serkan.bayraktar@oracle.com $ */
 /** @file
  * VBox Qt GUI - UIRecordingVideoBitrateEditor class declaration.
  */
@@ -33,10 +33,7 @@
 
 /* GUI includes: */
 #include "UIEditor.h"
-#include "UISettingsDefs.h"
 
-/* COM includes: */
-#include "KRecordingCodecDeadline.h"
 
 /* Forward declarations: */
 class QGridLayout;

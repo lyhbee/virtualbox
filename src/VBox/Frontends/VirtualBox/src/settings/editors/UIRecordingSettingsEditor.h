@@ -1,4 +1,4 @@
-/* $Id: UIRecordingSettingsEditor.h 111969 2025-12-02 07:59:05Z serkan.bayraktar@oracle.com $ */
+/* $Id: UIRecordingSettingsEditor.h 111975 2025-12-02 14:53:20Z serkan.bayraktar@oracle.com $ */
 /** @file
  * VBox Qt GUI - UIRecordingSettingsEditor class declaration.
  */
@@ -43,9 +43,7 @@ class QCheckBox;
 class QComboBox;
 class QGridLayout;
 class QLabel;
-class QSpinBox;
 class QWidget;
-class QIAdvancedSlider;
 class UIFilmContainer;
 class UIRecordingAudioProfileEditor;
 class UIRecordingFilePathEditor;

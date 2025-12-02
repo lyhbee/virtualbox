@@ -1,4 +1,4 @@
-/* $Id: UIRecordingVideoFrameSizeEditor.cpp 111932 2025-11-28 11:19:26Z serkan.bayraktar@oracle.com $ */
+/* $Id: UIRecordingVideoFrameSizeEditor.cpp 111975 2025-12-02 14:53:20Z serkan.bayraktar@oracle.com $ */
 /** @file
  * VBox Qt GUI - UIRecordingVideoFrameSizeEditor class implementation.
  */
@@ -34,21 +34,7 @@
 
 /* GUI includes: */
 #include "UICommon.h"
-#include "UIConverter.h"
-#include "UIFilmContainer.h"
-#include "UIGlobalSession.h"
 #include "UIRecordingVideoFrameSizeEditor.h"
-#include "UIRecordingFilePathEditor.h"
-#include "UIRecordingVideoBitrateEditor.h"
-#include "UIRecordingVideoFrameRateEditor.h"
-
-/* COM includes: */
-#include "CSystemProperties.h"
-
-/* Defines: */
-#define VIDEO_CAPTURE_BIT_RATE_MIN 32
-#define VIDEO_CAPTURE_BIT_RATE_MAX 2048
-
 
 UIRecordingVideoFrameSizeEditor::UIRecordingVideoFrameSizeEditor(QWidget *pParent /* = 0 */, bool fShowInBasicMode /* = false */)
     : UIEditor(pParent, fShowInBasicMode /* show in basic mode */)

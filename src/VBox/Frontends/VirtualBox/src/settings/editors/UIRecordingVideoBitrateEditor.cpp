@@ -1,4 +1,4 @@
-/* $Id: UIRecordingVideoBitrateEditor.cpp 111922 2025-11-27 13:03:56Z serkan.bayraktar@oracle.com $ */
+/* $Id: UIRecordingVideoBitrateEditor.cpp 111975 2025-12-02 14:53:20Z serkan.bayraktar@oracle.com $ */
 /** @file
  * VBox Qt GUI - UIRecordingVideoBitrateEditor class implementation.
  */
@@ -188,7 +188,6 @@ void UIRecordingVideoBitrateEditor::prepareWidgets()
                     pLayoutRecordingBitRate->addLayout(pLayoutRecordingBitRateScale);
                 }
             }
-
             m_pLayout->addWidget(m_pWidgetBitRateSettings, 0, 1);
         }
         /* Prepare recording bit rate spinbox: */
