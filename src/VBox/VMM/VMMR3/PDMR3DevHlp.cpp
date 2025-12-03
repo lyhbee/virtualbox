@@ -1,5 +1,5 @@
 
-/* $Id: PDMR3DevHlp.cpp 111695 2025-11-13 13:31:17Z knut.osmundsen@oracle.com $ */
+/* $Id: PDMR3DevHlp.cpp 111988 2025-12-03 12:09:00Z knut.osmundsen@oracle.com $ */
 /** @file
  * PDM - Pluggable Device and Driver Manager, Device Helpers.
  */
@@ -1027,6 +1027,16 @@ static DECLCALLBACK(int) pdmR3DevHlp_PhysWrite(PPDMDEVINS pDevIns, RTGCPHYS GCPh
 
     Log(("pdmR3DevHlp_PhysWrite: caller='%s'/%d: returns %Rrc\n", pDevIns->pReg->szName, pDevIns->iInstance, VBOXSTRICTRC_VAL(rcStrict) ));
     return VBOXSTRICTRC_VAL(rcStrict);
+}
+
+
+/** @interface_method_impl{PDMDEVHLPR3,pfnPhysGetPageSize} */
+static DECLCALLBACK(uint32_t) pdmR3DevHlp_PhysGetPageSize(PPDMDEVINS pDevIns)
+{
+    PDMDEV_ASSERT_DEVINS(pDevIns); RT_NOREF(pDevIns);
+    LogFlow(("pdmR3DevHlp_PhysGCPhys2CCPtr: caller='%s'/%d: returns GUEST_MIN_PAGE_SIZE/%#x\n",
+             pDevIns->pReg->szName, pDevIns->iInstance, GUEST_MIN_PAGE_SIZE));
+    return GUEST_MIN_PAGE_SIZE;
 }
 
 
@@ -5176,9 +5186,13 @@ const PDMDEVHLPR3 g_pdmR3DevHlpTrusted =
     CFGMR3ValidateConfig,
     pdmR3DevHlp_PhysRead,
     pdmR3DevHlp_PhysWrite,
+    pdmR3DevHlp_PhysGetPageSize,
     pdmR3DevHlp_PhysGCPhys2CCPtr,
     pdmR3DevHlp_PhysGCPhys2CCPtrReadOnly,
     pdmR3DevHlp_PhysReleasePageMappingLock,
+    pdmR3DevHlp_PhysBulkGCPhys2CCPtr,
+    pdmR3DevHlp_PhysBulkGCPhys2CCPtrReadOnly,
+    pdmR3DevHlp_PhysBulkReleasePageMappingLocks,
     pdmR3DevHlp_PhysReadGCVirt,
     pdmR3DevHlp_PhysWriteGCVirt,
     pdmR3DevHlp_PhysGCPtr2GCPhys,
@@ -5318,9 +5332,6 @@ const PDMDEVHLPR3 g_pdmR3DevHlpTrusted =
     pdmR3DevHlp_CallR0,
     pdmR3DevHlp_VMGetSuspendReason,
     pdmR3DevHlp_VMGetResumeReason,
-    pdmR3DevHlp_PhysBulkGCPhys2CCPtr,
-    pdmR3DevHlp_PhysBulkGCPhys2CCPtrReadOnly,
-    pdmR3DevHlp_PhysBulkReleasePageMappingLocks,
     pdmR3DevHlp_CpuGetGuestArch,
     pdmR3DevHlp_CpuGetGuestMicroarch,
     pdmR3DevHlp_CpuGetGuestAddrWidths,
@@ -5578,9 +5589,13 @@ const PDMDEVHLPR3 g_pdmR3DevHlpTracing =
     CFGMR3ValidateConfig,
     pdmR3DevHlpTracing_PhysRead,
     pdmR3DevHlpTracing_PhysWrite,
+    pdmR3DevHlp_PhysGetPageSize,
     pdmR3DevHlp_PhysGCPhys2CCPtr,
     pdmR3DevHlp_PhysGCPhys2CCPtrReadOnly,
     pdmR3DevHlp_PhysReleasePageMappingLock,
+    pdmR3DevHlp_PhysBulkGCPhys2CCPtr,
+    pdmR3DevHlp_PhysBulkGCPhys2CCPtrReadOnly,
+    pdmR3DevHlp_PhysBulkReleasePageMappingLocks,
     pdmR3DevHlp_PhysReadGCVirt,
     pdmR3DevHlp_PhysWriteGCVirt,
     pdmR3DevHlp_PhysGCPtr2GCPhys,
@@ -5720,9 +5735,6 @@ const PDMDEVHLPR3 g_pdmR3DevHlpTracing =
     pdmR3DevHlp_CallR0,
     pdmR3DevHlp_VMGetSuspendReason,
     pdmR3DevHlp_VMGetResumeReason,
-    pdmR3DevHlp_PhysBulkGCPhys2CCPtr,
-    pdmR3DevHlp_PhysBulkGCPhys2CCPtrReadOnly,
-    pdmR3DevHlp_PhysBulkReleasePageMappingLocks,
     pdmR3DevHlp_CpuGetGuestArch,
     pdmR3DevHlp_CpuGetGuestMicroarch,
     pdmR3DevHlp_CpuGetGuestAddrWidths,
@@ -6308,9 +6320,13 @@ const PDMDEVHLPR3 g_pdmR3DevHlpUnTrusted =
     CFGMR3ValidateConfig,
     pdmR3DevHlp_PhysRead,
     pdmR3DevHlp_PhysWrite,
+    pdmR3DevHlp_PhysGetPageSize,
     pdmR3DevHlp_PhysGCPhys2CCPtr,
     pdmR3DevHlp_PhysGCPhys2CCPtrReadOnly,
     pdmR3DevHlp_PhysReleasePageMappingLock,
+    pdmR3DevHlp_PhysBulkGCPhys2CCPtr,
+    pdmR3DevHlp_PhysBulkGCPhys2CCPtrReadOnly,
+    pdmR3DevHlp_PhysBulkReleasePageMappingLocks,
     pdmR3DevHlp_PhysReadGCVirt,
     pdmR3DevHlp_PhysWriteGCVirt,
     pdmR3DevHlp_PhysGCPtr2GCPhys,
@@ -6450,9 +6466,6 @@ const PDMDEVHLPR3 g_pdmR3DevHlpUnTrusted =
     pdmR3DevHlp_CallR0,
     pdmR3DevHlp_VMGetSuspendReason,
     pdmR3DevHlp_VMGetResumeReason,
-    pdmR3DevHlp_PhysBulkGCPhys2CCPtr,
-    pdmR3DevHlp_PhysBulkGCPhys2CCPtrReadOnly,
-    pdmR3DevHlp_PhysBulkReleasePageMappingLocks,
     pdmR3DevHlp_CpuGetGuestArch,
     pdmR3DevHlp_CpuGetGuestMicroarch,
     pdmR3DevHlp_CpuGetGuestAddrWidths,
