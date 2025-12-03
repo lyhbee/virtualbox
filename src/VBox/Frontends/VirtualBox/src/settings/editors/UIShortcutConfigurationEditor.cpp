@@ -1,4 +1,4 @@
-/* $Id: UIShortcutConfigurationEditor.cpp 110684 2025-08-11 17:18:47Z klaus.espenlaub@oracle.com $ */
+/* $Id: UIShortcutConfigurationEditor.cpp 111987 2025-12-03 12:03:34Z sergey.dubov@oracle.com $ */
 /** @file
  * VBox Qt GUI - UIShortcutConfigurationEditor class implementation.
  */
@@ -79,7 +79,7 @@ public:
 private:
 
     /** Holds the cell text. */
-    QString m_strText;
+    QString  m_strText;
 };
 
 
@@ -141,7 +141,7 @@ protected:
     /** Returns the number of children. */
     virtual int childCount() const RT_OVERRIDE
     {
-        return TableColumnIndex_Max;
+        return 2 /* cause children container represented by QPair */;
     }
 
     /** Returns the child item with @a iIndex. */
@@ -153,6 +153,7 @@ protected:
             case TableColumnIndex_Sequence: return m_cells.second;
             default: break;
         }
+        AssertMsgFailed(("Invalid index %d\n", iIndex));
         return 0;
     }
 
@@ -161,7 +162,8 @@ private:
     /** Creates cells. */
     void createCells()
     {
-        /* Create cells on the basis of description and current sequence: */
+        if (m_cells.first || m_cells.second)
+            destroyCells();
         m_cells = qMakePair(new UIShortcutTableViewCell(this, description()),
                             new UIShortcutTableViewCell(this, currentSequence()));
     }
@@ -177,7 +179,7 @@ private:
     }
 
     /** Holds the cell instances. */
-    QPair<UIShortcutTableViewCell*, UIShortcutTableViewCell*> m_cells;
+    QPair<UIShortcutTableViewCell*, UIShortcutTableViewCell*>  m_cells;
 };
 
 /** Shortcut configuration editor row list. */
