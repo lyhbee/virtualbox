@@ -1,4 +1,4 @@
-/* $Id: QITableView.cpp 112017 2025-12-04 14:39:08Z sergey.dubov@oracle.com $ */
+/* $Id: QITableView.cpp 112018 2025-12-04 14:49:37Z sergey.dubov@oracle.com $ */
 /** @file
  * VBox Qt GUI - Qt extensions: QITableView class implementation.
  */
@@ -557,8 +557,6 @@ public:
         /* Sanity check: */
         QITableView *pTable = table();
         AssertPtrReturn(pTable, QList<QAccessibleInterface*>());
-        QAbstractItemModel *pModel = pTable->model();
-        AssertPtrReturn(pModel, QList<QAccessibleInterface*>());
 
         /* Get current cell: */
         QITableViewCell *pCurrentCell = pTable->currentCell();
