@@ -1,4 +1,4 @@
-/* $Id: thread-posix.cpp 110684 2025-08-11 17:18:47Z klaus.espenlaub@oracle.com $ */
+/* $Id: thread-posix.cpp 112025 2025-12-04 18:54:43Z alexander.eichner@oracle.com $ */
 /** @file
  * IPRT - Threads, POSIX.
  */
@@ -398,6 +398,9 @@ static void *rtThreadNativeMain(void *pvArgs)
     Assert((uintptr_t)Self != NIL_RTNATIVETHREAD);
 #endif
     Assert(Self == (pthread_t)(RTNATIVETHREAD)Self);
+
+    /* Set the stack top to the best value we can. */
+    pThread->pvStackTop = ASMReadStackPointer();
 
 #if defined(RT_OS_LINUX)
     /*
