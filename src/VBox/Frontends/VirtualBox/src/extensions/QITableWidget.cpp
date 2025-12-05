@@ -1,4 +1,4 @@
-/* $Id: QITableWidget.cpp 112047 2025-12-05 14:17:19Z sergey.dubov@oracle.com $ */
+/* $Id: QITableWidget.cpp 112049 2025-12-05 16:01:58Z sergey.dubov@oracle.com $ */
 /** @file
  * VBox Qt GUI - Qt extensions: QITableWidget class implementation.
  */
@@ -62,8 +62,12 @@ public:
     /** Returns the role. */
     virtual QAccessible::Role role() const RT_OVERRIDE
     {
-        /* Cell in any case: */
-        return QAccessible::Cell;
+#ifdef VBOX_WS_MAC
+            // WORKAROUND: macOS doesn't respect QAccessible::Table/Cell roles.
+            return QAccessible::ListItem;
+#else
+            return QAccessible::Cell;
+#endif
     }
 
     /** Returns the parent. */
@@ -206,7 +210,12 @@ public:
 
     /** Constructs an accessibility interface passing @a pWidget to the base-class. */
     QIAccessibilityInterfaceForQITableWidget(QWidget *pWidget)
+#ifdef VBOX_WS_MAC
+        // WORKAROUND: macOS doesn't respect QAccessible::Table/Cell roles.
+        : QAccessibleWidget(pWidget, QAccessible::List)
+#else
         : QAccessibleWidget(pWidget, QAccessible::Table)
+#endif
     {}
 
     /** Returns a specialized accessibility interface @a enmType. */
