@@ -1,4 +1,4 @@
-/* $Id: UIRecordingSettingsEditor.h 112053 2025-12-08 13:26:11Z sergey.dubov@oracle.com $ */
+/* $Id: UIRecordingSettingsEditor.h 112055 2025-12-08 13:58:25Z sergey.dubov@oracle.com $ */
 /** @file
  * VBox Qt GUI - UIRecordingSettingsEditor class declaration.
  */
@@ -168,10 +168,6 @@ private:
         /** Holds the mode. */
         UISettingsDefs::RecordingMode           m_enmMode;
 
-        /** Holds the frame width. */
-        int      m_iFrameWidth;
-        /** Holds the frame height. */
-        int      m_iFrameHeight;
         /** Holds the audio profile. */
         QString  m_strAudioProfile;
 
