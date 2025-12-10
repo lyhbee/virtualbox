@@ -1,4 +1,4 @@
-/* $Id: ldrELFRelocatorTmpl.cpp.h 112089 2025-12-10 09:04:03Z knut.osmundsen@oracle.com $ */
+/* $Id: ldrELFRelocatorTmpl.cpp.h 112095 2025-12-10 09:56:26Z knut.osmundsen@oracle.com $ */
 /** @file
  * IPRT - Binary Image Loader, Template for ELF Relocatable Images.
  */
@@ -584,7 +584,6 @@ static int ELF_RELOCATOR_NAME(RelocateSectionRel)(PRTLDRMODELF pModElf, Elf_Addr
 
             /* ignore */
             case R_AARCH64_NONE:
-                RT_NOREF(SecAddr, cbSec);
                 break;
 
 #else
