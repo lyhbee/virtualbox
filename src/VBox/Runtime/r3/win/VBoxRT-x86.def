@@ -1,4 +1,4 @@
-; $Id: VBoxRT-x86.def 110684 2025-08-11 17:18:47Z klaus.espenlaub@oracle.com $
+; $Id: VBoxRT-x86.def 112100 2025-12-10 10:20:51Z knut.osmundsen@oracle.com $
 ;; @file
 ; IPRT - Win32 ASM exports.
 ;
@@ -37,20 +37,20 @@
 EXPORTS
     ASMMultU64ByU32DivByU32
 
-    RTTimeNanoTSLegacySyncInvarNoDelta
-    RTTimeNanoTSLFenceSyncInvarNoDelta
-    RTTimeNanoTSLegacyAsyncUseApicId
-    RTTimeNanoTSLegacyAsyncUseRdtscp
-    RTTimeNanoTSLegacyAsyncUseIdtrLim
-    RTTimeNanoTSLegacySyncInvarWithDeltaUseApicId
-    RTTimeNanoTSLegacySyncInvarWithDeltaUseRdtscp
-    RTTimeNanoTSLegacySyncInvarWithDeltaUseIdtrLim
-    RTTimeNanoTSLFenceAsyncUseApicId
-    RTTimeNanoTSLFenceAsyncUseRdtscp
-    RTTimeNanoTSLFenceAsyncUseIdtrLim
-    RTTimeNanoTSLFenceSyncInvarWithDeltaUseApicId
-    RTTimeNanoTSLFenceSyncInvarWithDeltaUseRdtscp
-    RTTimeNanoTSLFenceSyncInvarWithDeltaUseIdtrLim
+    RTTimeNanoTSLegacySyncInvarNoDelta                  ; with-gip
+    RTTimeNanoTSLFenceSyncInvarNoDelta                  ; with-gip
+    RTTimeNanoTSLegacyAsyncUseApicId                    ; with-gip
+    RTTimeNanoTSLegacyAsyncUseRdtscp                    ; with-gip
+    RTTimeNanoTSLegacyAsyncUseIdtrLim                   ; with-gip
+    RTTimeNanoTSLegacySyncInvarWithDeltaUseApicId       ; with-gip
+    RTTimeNanoTSLegacySyncInvarWithDeltaUseRdtscp       ; with-gip
+    RTTimeNanoTSLegacySyncInvarWithDeltaUseIdtrLim      ; with-gip
+    RTTimeNanoTSLFenceAsyncUseApicId                    ; with-gip
+    RTTimeNanoTSLFenceAsyncUseRdtscp                    ; with-gip
+    RTTimeNanoTSLFenceAsyncUseIdtrLim                   ; with-gip
+    RTTimeNanoTSLFenceSyncInvarWithDeltaUseApicId       ; with-gip
+    RTTimeNanoTSLFenceSyncInvarWithDeltaUseRdtscp       ; with-gip
+    RTTimeNanoTSLFenceSyncInvarWithDeltaUseIdtrLim      ; with-gip
 
     RTStrMemFind32
 
