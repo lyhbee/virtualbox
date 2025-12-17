@@ -1,4 +1,4 @@
-/* $Id: MachineImpl.cpp 110684 2025-08-11 17:18:47Z klaus.espenlaub@oracle.com $ */
+/* $Id: MachineImpl.cpp 112162 2025-12-17 23:16:50Z knut.osmundsen@oracle.com $ */
 /** @file
  * Implementation of IMachine in VBoxSVC.
  */
@@ -241,7 +241,7 @@ Machine::HWData::HWData()
 {
     /* default values for a newly created machine for x86. */
     mHWVersion.printf("%d", SchemaDefs::DefaultHardwareVersion);
-    mMemorySize = 128;
+    mMemorySize = 1024;
     mCPUCount = 1;
     mCPUHotPlugEnabled = false;
     mMemoryBalloonSize = 0;
