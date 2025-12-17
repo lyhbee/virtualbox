@@ -6,7 +6,7 @@ Requires >= Python 3.4.
 """
 
 # -*- coding: utf-8 -*-
-# $Id: configure.py 112142 2025-12-17 09:36:01Z andreas.loeffler@oracle.com $
+# $Id: configure.py 112144 2025-12-17 10:53:44Z andreas.loeffler@oracle.com $
 # pylint: disable=bare-except
 # pylint: disable=consider-using-f-string
 # pylint: disable=global-statement
@@ -39,7 +39,7 @@ along with this program; if not, see <https://www.gnu.org/licenses>.
 SPDX-License-Identifier: GPL-3.0-only
 """
 
-__revision__ = "$Revision: 112142 $"
+__revision__ = "$Revision: 112144 $"
 
 import argparse
 import ctypes
@@ -2087,7 +2087,7 @@ class EnvManager:
             return True;
         if sVal:
             sVal = ''.join(c if c != '\\' else '/' for c in sVal); # Translate to UNIX paths (for kBuild).
-        fh.write(f'{sWhat if sWhat else ''}{sKey}={sVal if sVal else self.env[sKey]}\n');
+        fh.write(f"{sWhat if sWhat else ''}{sKey}={sVal if sVal else self.env[sKey]}\n");
 
     def write_all(self, fh, sWhat = None, asPrefixInclude = None, asPrefixExclude = None):
         """
