@@ -6,7 +6,7 @@ Requires >= Python 3.4.
 """
 
 # -*- coding: utf-8 -*-
-# $Id: configure.py 112149 2025-12-17 14:00:45Z andreas.loeffler@oracle.com $
+# $Id: configure.py 112151 2025-12-17 14:21:35Z andreas.loeffler@oracle.com $
 # pylint: disable=bare-except
 # pylint: disable=consider-using-f-string
 # pylint: disable=global-statement
@@ -39,7 +39,7 @@ along with this program; if not, see <https://www.gnu.org/licenses>.
 SPDX-License-Identifier: GPL-3.0-only
 """
 
-__revision__ = "$Revision: 112149 $"
+__revision__ = "$Revision: 112151 $"
 
 import argparse
 import ctypes
@@ -256,7 +256,11 @@ def isFile(sFile):
 def libraryFileStripSuffix(sLib):
     """
     Strips common static/dynamic library suffixes (UNIX, macOS, Windows) from a filename.
+
+    Returns None if no or empty library is specified.
     """
+    if not sLib:
+        return None;
     # Handle .so.X[.Y...] versioned shared libraries.
     sLib = re.sub(r'\.so(\.\d+)*$', '', sLib);
     # Handle .dylib (macOS), .dll/.lib (Windows), .a (static).
@@ -2697,12 +2701,16 @@ def main():
     print(f'VirtualBox configuration script - r{__revision__ }');
     print();
     print(f'Running on {platform.system()} {platform.release()} ({platform.machine()})');
-    print(f'Using Python {sys.version}');
+    print(f'Using Python {sys.version} ({sysconfig.get_platform()})');
     print();
     print(f'Host OS / arch     : { g_sHostTarget}.{g_sHostArch}');
     print(f'Building for target: { g_oEnv["KBUILD_TARGET"] }.{ g_oEnv["KBUILD_TARGET_ARCH"] }');
     print(f'Build type         : { g_oEnv["KBUILD_TYPE"] }');
     print();
+
+    if g_fDebug:
+        print('\n'.join(f"{k}: {v}" for k, v in sysconfig.get_config_vars().items()));
+        print();
 
     if g_fCompatMode:
         print('Running in compatibility mode');
